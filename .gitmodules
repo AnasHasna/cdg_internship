@@ -1,0 +1,3 @@
+[submodule "loginSystem"]
+	path = loginSystem
+	url = https://github.com/AnasHasna/cdg_internship.git
