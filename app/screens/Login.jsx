@@ -58,13 +58,15 @@ const Login = () => {
     mutationKey: 'auth',
     onSuccess: (data) => {
       console.log(data.data);
-      dispatch(setUserInfo(data.data));
+      dispatch(setUserInfo({ ...data.data }));
       console.log('succes');
     },
     onError: (error) => {
       console.log(error.message);
+      khadija;
     },
   });
+  // console.log(useSelector((state) => state.user.userInfo));
 
   return (
     <StyledContainer>

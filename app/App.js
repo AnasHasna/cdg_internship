@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import store from './redux/store';
 import { Provider } from 'react-redux';
+import Welcome from './screens/Welcome';
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,8 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <NavigationContainer>
-            <Login />
+            {/* <Login /> */}
+            <Welcome />
           </NavigationContainer>
         </Provider>
       </QueryClientProvider>
