@@ -11,8 +11,7 @@ const bcrypt = require("bcrypt");
  */
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { fullName, email, dob, password } = req.body;
-  const date = new Date(dob);
+  const { fullName, email, role, password } = req.body;
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
@@ -21,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     fullName,
     email,
-    dob: date,
+    role,
     password,
   });
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {

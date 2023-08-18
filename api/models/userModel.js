@@ -13,9 +13,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    dob: {
-      type: Date,
+    role: {
+      type: String,
       required: true,
+      trim: true,
     },
     password: {
       type: String,

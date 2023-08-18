@@ -8,8 +8,11 @@ import React from 'react';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import Welcome from './screens/Welcome';
+import Register from './screens/Register';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const queryClient = new QueryClient();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -17,20 +20,14 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <NavigationContainer>
-            {/* <Login /> */}
-            <Welcome />
+            <Stack.Navigator>
+              <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
+              <Stack.Screen name="Register" options={{ headerShown: false }} component={Register} />
+              <Stack.Screen name="Welcome" options={{ headerShown: false }} component={Welcome} />
+            </Stack.Navigator>
           </NavigationContainer>
         </Provider>
       </QueryClientProvider>
     </React.Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

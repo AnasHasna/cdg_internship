@@ -1,79 +1,74 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   ButtonText,
-  Colors,
+  ExtraText,
+  ExtraView,
   InnerContainer,
-  LeftIcon,
+  Line,
   PageLogo,
   PageTitle,
-  RightIcon,
   StyledButton,
   StyledContainer,
   StyledFormArea,
-  StyledInputLabel,
-  StyledTextInput,
-  Line,
-  ExtraView,
-  ExtraText,
   TextLink,
   TextLinkContent,
-  ErrorMessage,
 } from '../components/styles';
 import { StatusBar } from 'expo-status-bar';
-import { Formik, useFormikContext } from 'formik';
-import { View } from 'react-native';
-import { Ionicons, Octicons } from '@expo/vector-icons';
 import * as Yup from 'yup';
-import { auth } from '../api/authApi';
+import { Formik } from 'formik';
+import MyStyledTextInput from '../components/MyStyledTextInput';
+import { Colors } from '../components/styles';
 import { useMutation } from 'react-query';
-import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../api/authApi';
+import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../redux/slices/userSlice';
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
   //UseStates
   const [hidePassword, setHidePassword] = useState(true);
   const dispatch = useDispatch();
-  //Formik and Yup
+  // styles
+  const { darkLight } = Colors;
+  // Formik validation
   const initialValues = {
+    fullName: '',
     email: '',
+    role: '',
     password: '',
+    confirmPassword: '',
   };
   const validationSchema = Yup.object().shape({
+    fullName: Yup.string().required('Le nom complet est obligatoire'),
     email: Yup.string().email('Adresse Email invalide').required('Adresse Email est obligatoire'),
+    role: Yup.string().required('Le rôle est obligatoire'),
     password: Yup.string()
       .min(6, 'Le mot de passe doit contenir au moins 6 caractères')
       .required('Mot de passe est obligatoire'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Les mots de passe doivent correspondre')
+      .required('Confirmer le mot de passe est obligatoire'),
   });
 
-  //private route
-  const user = useSelector((state) => state.user);
-  useEffect(() => {
-    console.log(user.userInfo);
-    if (user.userInfo) {
-      navigation.navigate('Welcome');
-    }
-  }, [user]);
-
-  //Logic
+  // Logic
   const handleSubmit = async (values) => {
     const data = {
+      fullName: values.fullName,
       email: values.email,
+      role: values.role,
       password: values.password,
     };
     mutate(data);
   };
 
-  const { isLoading, mutate } = useMutation(auth, {
-    mutationKey: 'auth',
+  const { isLoading, mutate } = useMutation(register, {
+    mutationKey: 'register',
     onSuccess: (data) => {
       console.log(data.data);
       dispatch(setUserInfo({ ...data.data }));
-      console.log('succes');
       navigation.navigate('Welcome');
     },
     onError: (error) => {
       console.log(error.message);
-      khadija;
     },
   });
 
@@ -83,12 +78,21 @@ const Login = ({ navigation }) => {
       <InnerContainer>
         <PageLogo source={require('../assets/logo_cdg.png')} />
         <PageTitle>Gestionnaire Des Tâches</PageTitle>
-        <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <StyledFormArea>
               <MyStyledTextInput
-                label="Adresse Email"
+                name="fullName"
+                label="Nom complet"
+                icon="person"
+                placeholder="Nom et Prénom"
+                onChangeText={handleChange('fullName')}
+                onBlur={handleBlur('fullName')}
+                value={values.fullName}
+              />
+              <MyStyledTextInput
                 name="email"
+                label="Adresse Email"
                 icon="mail"
                 placeholder="Email"
                 onChangeText={handleChange('email')}
@@ -97,8 +101,17 @@ const Login = ({ navigation }) => {
                 keyboardType="email-address"
               />
               <MyStyledTextInput
-                label="Mot de passe"
+                name="role"
+                label="Rôle"
+                icon="gear"
+                placeholder="Rôle"
+                onChangeText={handleChange('role')}
+                onBlur={handleBlur('role')}
+                value={values.role}
+              />
+              <MyStyledTextInput
                 name="password"
+                label="Mot de passe"
                 icon="lock"
                 placeholder="* * * * * * * *"
                 onChangeText={handleChange('password')}
@@ -109,27 +122,31 @@ const Login = ({ navigation }) => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
+              <MyStyledTextInput
+                name="confirmPassword"
+                label="Confirmer le mot de passe"
+                icon="lock"
+                placeholder="* * * * * * * *"
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+                value={values.confirmPassword}
+                secureTextEntry={hidePassword}
+                isPassword={true}
+                hidePassword={hidePassword}
+                setHidePassword={setHidePassword}
+              />
               <StyledButton onPress={handleSubmit}>
-                <ButtonText>{isLoading ? 'Loading' : 'Se Connecter'}</ButtonText>
+                <ButtonText>S'identifier</ButtonText>
               </StyledButton>
-              <ExtraView>
-                <TextLink
-                  onPress={() => {
-                    navigation.navigate('ForgotPassword');
-                  }}
-                >
-                  <TextLinkContent>Mot de passe oublié ?</TextLinkContent>
-                </TextLink>
-              </ExtraView>
               <Line />
               <ExtraView>
                 <ExtraText>Vous n'avez pas de compte déjà ?</ExtraText>
                 <TextLink
                   onPress={() => {
-                    navigation.navigate('Register');
+                    navigation.navigate('Login');
                   }}
                 >
-                  <TextLinkContent>S'inscrire</TextLinkContent>
+                  <TextLinkContent>Se Connecter</TextLinkContent>
                 </TextLink>
               </ExtraView>
             </StyledFormArea>
@@ -140,34 +157,4 @@ const Login = ({ navigation }) => {
   );
 };
 
-const { brand, darkLight } = Colors;
-
-const MyStyledTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
-  const { handleChange, handleBlur, values, errors, touched } = useFormikContext();
-  const fieldError = errors[props.name]; // Access the error for this field
-  const fieldTouched = touched[props.name]; // Check if the field has been touched
-  return (
-    <View>
-      <LeftIcon>
-        <Octicons name={icon} size={30} color={brand} />
-      </LeftIcon>
-      <StyledInputLabel>{label}</StyledInputLabel>
-      <StyledTextInput
-        {...props}
-        onChangeText={handleChange(props.name)} // Use props.name here
-        onBlur={handleBlur(props.name)}
-      />
-      {fieldError &&
-        fieldTouched && ( // Display error only if field has been touched and has an error
-          <ErrorMessage>{fieldError}</ErrorMessage>
-        )}
-      {isPassword && (
-        <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-          <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color={darkLight} />
-        </RightIcon>
-      )}
-    </View>
-  );
-};
-
-export default Login;
+export default Register;

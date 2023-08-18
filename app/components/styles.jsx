@@ -27,6 +27,7 @@ export const InnerContainer = styled.View`
   flex: 1;
   width: 100%;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 export const PageLogo = styled.Image`
@@ -126,6 +127,7 @@ export const ExtraView = styled.View`
 export const TextLinkContent = styled.Text`
   color: ${brand};
   font-size: 15px;
+  padding-right: 10px;
 `;
 
 export const ErrorMessage = styled.Text`
