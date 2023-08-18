@@ -44,6 +44,14 @@ export const PageTitle = styled.Text`
   padding: 10px;
 `;
 
+export const PageText = styled.Text`
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  color: ${tertiary};
+  padding: 10px;
+`;
+
 export const StyledFormArea = styled.View`
   width: 90%;
 `;

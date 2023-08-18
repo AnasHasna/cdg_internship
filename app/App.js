@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import Welcome from './screens/Welcome';
 import Register from './screens/Register';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ForgotPassword from './screens/ForgotPassword';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ export default function App() {
               <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
               <Stack.Screen name="Register" options={{ headerShown: false }} component={Register} />
               <Stack.Screen name="Welcome" options={{ headerShown: false }} component={Welcome} />
+              <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} component={ForgotPassword} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

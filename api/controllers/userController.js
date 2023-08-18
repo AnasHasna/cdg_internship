@@ -77,11 +77,16 @@ const forgetPassword = asyncHandler(async (req, res) => {
     const verifyCode = Math.floor(Math.random() * 1000000 + 1);
     sendEmail(verifyCode, user.email);
     await User.findByIdAndUpdate(user._id, { verifyCode });
-    res.json({
+    res.status(200).json({
+      status: "success",
       message: "Email sent",
     });
   } else {
-    res.status(404);
+    res.status(400).json({
+      status: "fail",
+      message: "User not found",
+    });
+
     throw new Error("User not found");
   }
 });
@@ -92,9 +97,9 @@ const forgetPassword = asyncHandler(async (req, res) => {
  * @access  Public
  */
 const resetPassword = asyncHandler(async (req, res) => {
-  const { verifyCode, email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (user.verifyCode !== verifyCode) {
+  const { verifyCode, password } = req.body;
+  const user = await User.findOne({ verifyCode });
+  if (!user) {
     res.status(400).json({
       status: "fail",
       message: "Invalid code",
@@ -104,7 +109,7 @@ const resetPassword = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     await User.findOneAndUpdate(
-      { email },
+      { verifyCode },
       { $set: { password: hashedPassword } }
     );
     res.status(200).json({
