@@ -116,6 +116,12 @@ module.exports.addUserToProject = asyncHandler(async (req, res) => {
   const { userId, key } = req.body;
   const project = await Project.findOne({ key: key });
   if (project) {
+    if (project.usersId.includes(userId)) {
+      return res.status(400).json({
+        status: "false",
+        message: "User already exists in this project",
+      });
+    }
     project.usersId.push(userId);
     await project.save();
     return res.status(200).json({
