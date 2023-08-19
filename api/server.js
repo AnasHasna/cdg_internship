@@ -4,6 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 const userRoutes = require("./routes/userRoutes");
+const projectRoutes = require("./routes/projectRoutes");
 
 // ENV config
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", userRoutes);
+app.use("/api/project", projectRoutes);
 
 app.use(errorHandler);
 app.use(notFound);
