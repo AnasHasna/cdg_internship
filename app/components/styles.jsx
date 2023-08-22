@@ -73,6 +73,55 @@ export const InnerContainer = styled.View`
   margin-bottom: 30px;
 `;
 
+export const CreateProjectContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 30px;
+  background-color: ${primary};
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px;
+  border: 1.3px solid ${brand};
+`;
+
+export const CreateProjectTextContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CreateProjectText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: ${tertiary};
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const CreateProjectSubText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  color: ${tertiary};
+`;
+
+export const CreateProjectButton = styled.TouchableOpacity`
+  align-items: center;
+  border: 1.3px solid ${brand};
+  padding: 10px;
+  margin: 10px;
+  backgound-color: ${primary};
+`;
+
 export const PageLogo = styled.Image`
   width: 250px;
   height: 200px;
@@ -97,6 +146,18 @@ export const PageText = styled.Text`
 
 export const StyledFormArea = styled.View`
   width: 90%;
+`;
+
+export const StyledTextInputArea = styled.TextInput`
+  background-color: ${secondary};
+  padding: 15px;
+  padding-right: 150px;
+  border-radius: 15px;
+  font-size: 16px;
+  height: 60px;
+  margin-vertical: 3px;
+  margin-bottom: 10px;
+  color: ${tertiary};
 `;
 
 export const StyledTextInput = styled.TextInput`

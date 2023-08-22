@@ -106,10 +106,6 @@ const MyModal = (props) => {
                 </StyledFormArea>
               )}
             </Formik>
-
-            {/* <TouchableOpacity onPress={closeModal} style={styles.closeButton}>
-              <Text>Close Modal</Text>
-            </TouchableOpacity> */}
           </View>
         </View>
       </Modal>

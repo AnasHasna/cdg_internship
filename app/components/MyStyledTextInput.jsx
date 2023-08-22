@@ -14,6 +14,7 @@ const MyStyledTextInput = ({ label, icon, isPassword, hidePassword, setHidePassw
       <LeftIcon>
         <Octicons name={icon} size={30} color={brand} />
       </LeftIcon>
+
       <StyledInputLabel>{label}</StyledInputLabel>
       <StyledTextInput
         {...props}
