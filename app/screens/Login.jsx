@@ -50,7 +50,7 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     console.log(user.userInfo);
     if (user.userInfo) {
-      navigation.navigate('Welcome');
+      navigation.navigate('Home');
     }
   }, [user]);
 
@@ -69,11 +69,10 @@ const Login = ({ navigation }) => {
       console.log(data.data);
       dispatch(setUserInfo({ ...data.data }));
       console.log('succes');
-      navigation.navigate('Welcome');
+      navigation.navigate('Home');
     },
     onError: (error) => {
       console.log(error.message);
-      khadija;
     },
   });
 

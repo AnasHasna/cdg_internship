@@ -23,6 +23,49 @@ export const StyledContainer = styled.ScrollView`
   background-color: ${primary};
 `;
 
+export const NavBarContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  width: 100%;
+  background-color: ${primary};
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const NavBarText = styled.Text`
+  font-size: 20px;
+  color: ${tertiary};
+`;
+
+export const NavBarTitle = styled.Text`
+  font-size: 20px;
+  color: ${tertiary};
+  font-weight: bold;
+`;
+
+export const NavBarButton = styled.TouchableOpacity`
+  background-color: ${primary};
+  justify-content: center;
+  border-radius: 25px;
+  margin-vertical: 5px;
+  height: 40px;
+  align-items: center;
+`;
+
+export const NavBarButtonIcon = styled.View``;
+
+export const NavBarIcon = styled.View`
+  background-color: ${primary};
+  justify-content: center;
+  border-radius: 25px;
+  margin-vertical: 5px;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  border: 1.5px solid ${brand};
+`;
+
 export const InnerContainer = styled.View`
   flex: 1;
   width: 100%;
