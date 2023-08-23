@@ -16,6 +16,14 @@ const getProjects = async (id, token) => {
   });
 };
 
+const getProjectInfo = async (id, token) => {
+  return await axios.get(`http://192.168.8.31:5000/api/project/info/${id}`, {
+    headers: {
+      'x-access-token': token,
+    },
+  });
+};
+
 const addUserToProject = async ({ data, token }) => {
   return await axios.put('http://192.168.8.31:5000/api/project/addUser', data, {
     headers: {
@@ -24,4 +32,4 @@ const addUserToProject = async ({ data, token }) => {
   });
 };
 
-export { createProject, getProjects, addUserToProject };
+export { createProject, getProjects, addUserToProject, getProjectInfo };

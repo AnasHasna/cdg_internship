@@ -13,6 +13,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ForgotPassword from './screens/ForgotPassword';
 import Home from './screens/Home';
 import Settings from './screens/Settings';
+import TaskHome from './screens/TaskHome';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -29,11 +30,8 @@ export default function App() {
               <Stack.Screen name="Register" options={{ headerShown: false }} component={Register} />
               <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} />
               <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} component={ForgotPassword} />
+              <Stack.Screen name="TaskHome" options={{ headerShown: false }} component={TaskHome} />
             </Stack.Navigator>
-            {/* <Drawer.Navigator initialRouteName="Home">
-              <Drawer.Screen name="Home" options={{ headerShown: false }} component={Home} />
-              <Drawer.Screen name="Settings" options={{ headerShown: false }} component={Settings} />
-            </Drawer.Navigator> */}
           </NavigationContainer>
         </Provider>
       </QueryClientProvider>

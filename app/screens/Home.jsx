@@ -41,7 +41,13 @@ const Home = ({ navigation }) => {
           .slice()
           .reverse()
           .map((project) => (
-            <ProjectDetail key={project._id} name={project.name} nbUsers={project.usersId.length} />
+            <ProjectDetail
+              key={project._id}
+              name={project.name}
+              nbUsers={project.usersId.length}
+              navigation={navigation}
+              id={project._id}
+            />
           ))}
       </InnerContainer>
     </StyledContainer>

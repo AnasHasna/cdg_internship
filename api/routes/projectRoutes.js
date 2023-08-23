@@ -15,6 +15,6 @@ projectRoutes
   .delete(verifyToken, deleteProject);
 
 projectRoutes.get("/:id", verifyToken, getAllProjects);
-projectRoutes.get("/:id", verifyToken, getProjectInfo);
+projectRoutes.get("/info/:id", verifyToken, getProjectInfo);
 projectRoutes.put("/addUser", verifyToken, addUserToProject);
 module.exports = projectRoutes;
