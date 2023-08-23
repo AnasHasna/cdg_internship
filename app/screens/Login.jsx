@@ -48,7 +48,6 @@ const Login = ({ navigation }) => {
   //private route
   const user = useSelector((state) => state.user);
   useEffect(() => {
-    console.log(user.userInfo);
     if (user.userInfo) {
       navigation.navigate('Home');
     }

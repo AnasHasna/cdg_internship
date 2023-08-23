@@ -73,6 +73,18 @@ export const InnerContainer = styled.View`
   margin-bottom: 30px;
 `;
 
+export const ProjectDetailContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: ${brand};
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px;
+`;
+
 export const CreateProjectContainer = styled.View`
   flex: 1;
   flex-direction: row;
@@ -105,6 +117,17 @@ export const CreateProjectText = styled.Text`
   text-align: center;
 `;
 
+export const ProjectDetailText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: ${primary};
+  font-weight: bold;
+  text-align: left;
+`;
+
 export const CreateProjectSubText = styled.Text`
   flex: 1;
   width: 100%;
@@ -114,12 +137,28 @@ export const CreateProjectSubText = styled.Text`
   color: ${tertiary};
 `;
 
+export const ProjectDetailSubText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  font-size: 15px;
+  color: ${primary};
+`;
+
 export const CreateProjectButton = styled.TouchableOpacity`
   align-items: center;
   border: 1.3px solid ${brand};
   padding: 10px;
   margin: 10px;
   backgound-color: ${primary};
+`;
+
+export const ProjectDetailButton = styled.TouchableOpacity`
+  align-items: center;
+  align-self: flex-start;
+  margin: 10px;
+  color: ${primary};
 `;
 
 export const PageLogo = styled.Image`

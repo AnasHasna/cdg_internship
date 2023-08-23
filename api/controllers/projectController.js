@@ -65,8 +65,8 @@ module.exports.deleteProject = asyncHandler(async (req, res) => {
  * @access  Private
  */
 module.exports.getAllProjects = asyncHandler(async (req, res) => {
-  const { userId } = req.body;
-  const projects = await Project.find({ usersId: userId });
+  const { id } = req.params;
+  const projects = await Project.find({ usersId: id });
   if (projects) {
     return res.status(200).json({
       status: "true",

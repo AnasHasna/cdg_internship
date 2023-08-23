@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const createProject = async ({ data, token }) => {
-  console.log(token);
   return await axios.post('http://192.168.8.31:5000/api/project', data, {
     headers: {
       'x-access-token': token,
@@ -9,4 +8,20 @@ const createProject = async ({ data, token }) => {
   });
 };
 
-export { createProject };
+const getProjects = async (id, token) => {
+  return await axios.get(`http://192.168.8.31:5000/api/project/${id}`, {
+    headers: {
+      'x-access-token': token,
+    },
+  });
+};
+
+const addUserToProject = async ({ data, token }) => {
+  return await axios.put('http://192.168.8.31:5000/api/project/addUser', data, {
+    headers: {
+      'x-access-token': token,
+    },
+  });
+};
+
+export { createProject, getProjects, addUserToProject };

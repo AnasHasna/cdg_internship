@@ -12,8 +12,9 @@ const projectRoutes = express.Router();
 projectRoutes
   .route("/")
   .post(verifyToken, createProject)
-  .delete(verifyToken, deleteProject)
-  .get(verifyToken, getAllProjects);
+  .delete(verifyToken, deleteProject);
+
+projectRoutes.get("/:id", verifyToken, getAllProjects);
 projectRoutes.get("/:id", verifyToken, getProjectInfo);
 projectRoutes.put("/addUser", verifyToken, addUserToProject);
 module.exports = projectRoutes;
