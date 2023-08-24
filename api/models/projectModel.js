@@ -21,6 +21,13 @@ const projectSchema = mongoose.Schema(
         default: [],
       },
     ],
+    tasks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Task",
+        default: [],
+      },
+    ],
   },
   { timestamps: true }
 );

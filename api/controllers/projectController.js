@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Project = require("../models/projectModel");
+const Task = require("../models/taskModel");
 
 /**
  * @desc    Create a new project
@@ -93,6 +94,8 @@ module.exports.getProjectInfo = asyncHandler(async (req, res) => {
     path: "usersId",
     select: "fullName",
   });
+  const tasks = await Task.find({ projectId: id });
+  project.tasks = tasks;
   if (project) {
     return res.status(200).json({
       status: "true",
