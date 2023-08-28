@@ -10,11 +10,11 @@ export const Colors = {
   tertiary: '#2E3641',
   darkLight: '#759A1F',
   brand: '#607F18',
-  green: '#10B981',
-  red: '#EF4444',
+  green: '#D9F2DC',
+  lightGreen: '#eef7eb',
 };
 
-const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
+const { primary, secondary, tertiary, darkLight, brand, green, lightGreen } = Colors;
 
 export const StyledContainer = styled.ScrollView`
   flex: 1;
@@ -79,10 +79,11 @@ export const ProjectDetailContainer = styled.View`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
-  background-color: ${brand};
+  background-color: ${green};
   padding: 20px;
   border-radius: 20px;
   margin: 10px;
+  border: 1.3px solid ${brand};
 `;
 
 export const CreateProjectContainer = styled.View`
@@ -123,7 +124,7 @@ export const ProjectDetailText = styled.Text`
   align-items: center;
   margin-bottom: 20px;
   font-size: 20px;
-  color: ${primary};
+  color: ${tertiary};
   font-weight: bold;
   text-align: left;
 `;
@@ -143,7 +144,7 @@ export const ProjectDetailSubText = styled.Text`
   align-items: center;
   text-align: left;
   font-size: 15px;
-  color: ${primary};
+  color: ${tertiary};
 `;
 
 export const CreateProjectButton = styled.TouchableOpacity`
@@ -284,4 +285,59 @@ export const TextLinkContent = styled.Text`
 export const ErrorMessage = styled.Text`
   color: red;
   font-size: 12px;
+`;
+
+export const TaskCardContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: ${lightGreen};
+  padding: 20px;
+  border-radius: 10px;
+`;
+
+export const TaskCardIcon = styled.View`
+  background-color: ${brand};
+  justify-content: center;
+  border-radius: 25px;
+  margin-vertical: 5px;
+  height: 50px;
+  width: 50px;
+  align-items: center;
+  border: 1.5px solid ${brand};
+  margin-right: 20px;
+`;
+
+export const TaskCardTextContainer = styled.View`
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+`;
+
+export const TaskCardText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  color: ${tertiary};
+  font-weight: bold;
+  text-align: left;
+`;
+export const TaskCardSubText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  font-size: 15px;
+  color: ${tertiary};
+`;
+
+export const TaskCardButton = styled.TouchableOpacity`
+  align-items: center;
+  align-self: flex-start;
+  margin: 10px;
+  color: ${tertiary};
 `;

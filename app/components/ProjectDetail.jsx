@@ -20,12 +20,12 @@ const ProjectDetail = (props) => {
   return (
     <ProjectDetailContainer>
       <CreateProjectTextContainer>
-        <ProjectDetailText>Nb Taches</ProjectDetailText>
-        <ProjectDetailText>{props.name}</ProjectDetailText>
+        <ProjectDetailText>{props.nbTasks} Taches dans ce projet</ProjectDetailText>
+        <ProjectDetailText>Titre: {props.name}</ProjectDetailText>
         <ProjectDetailSubText>{props.nbUsers} Utilisateurs dans ce projet</ProjectDetailSubText>
       </CreateProjectTextContainer>
       <ProjectDetailButton>
-        <Octicons name="kebab-horizontal" size={30} color="white" onPress={handlePress} />
+        <Octicons name="kebab-horizontal" size={30} color="black" onPress={handlePress} />
       </ProjectDetailButton>
     </ProjectDetailContainer>
   );

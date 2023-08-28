@@ -14,6 +14,7 @@ import ForgotPassword from './screens/ForgotPassword';
 import Home from './screens/Home';
 import Settings from './screens/Settings';
 import TaskHome from './screens/TaskHome';
+import TaskDetail from './screens/TaskDetail';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,7 @@ export default function App() {
               <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} />
               <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} component={ForgotPassword} />
               <Stack.Screen name="TaskHome" options={{ headerShown: false }} component={TaskHome} />
+              <Stack.Screen name="TaskDetail" options={{ headerShown: false }} component={TaskDetail} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

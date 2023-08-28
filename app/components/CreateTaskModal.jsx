@@ -16,12 +16,14 @@ import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
 import { useMutation } from 'react-query';
 import { createProject } from '../api/projectApi';
+import { createTask } from '../api/taskApi';
 
-const CreateProjectModal = (props) => {
+const CreateTaskModal = (props) => {
   //Redux
   const token = useSelector((state) => state.user.userInfo.token);
   const user_id = useSelector((state) => state.user.userInfo._id);
-  // console.log(user_id);
+  const projectId = props.id;
+  //   console.log(user_id);
   //Yup validation
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('Le titre est obligatoire'),
@@ -40,8 +42,8 @@ const CreateProjectModal = (props) => {
     props.setView(false);
   };
   //Logic
-  const { isLoading, mutate } = useMutation(createProject, {
-    mutationKey: 'createProject',
+  const { isLoading, mutate } = useMutation(createTask, {
+    mutationKey: 'createTask',
     onSuccess: (data) => {
       console.log(data.data);
       closeModal();
@@ -54,13 +56,11 @@ const CreateProjectModal = (props) => {
 
   const handleSubmit = (values) => {
     const data = {
-      name: values.title,
+      title: values.title,
       description: values.description,
-      userId: user_id,
+      projectId: projectId,
     };
     mutate({ data, token });
-
-    console.log(data);
   };
 
   return (
@@ -68,7 +68,7 @@ const CreateProjectModal = (props) => {
       <Modal animationType="slide" transparent={true} visible={props.view} onRequestClose={closeModal}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <PageText>Entrer le titre et la description du projet</PageText>
+            <PageText>Entrer le titre et la description de votre tâche</PageText>
             <Formik
               initialValues={{ title: '', description: '' }}
               validationSchema={validationSchema}
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateProjectModal;
+export default CreateTaskModal;

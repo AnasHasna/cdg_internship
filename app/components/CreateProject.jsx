@@ -10,8 +10,9 @@ import {
 import { Text } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
 import CreateProjectModal from './CreateProjectModal';
+import CreateTaskModal from './CreateTaskModal';
 
-const CreateProject = () => {
+const CreateProject = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handlePress = () => {
     setIsModalVisible(true);
@@ -20,14 +21,26 @@ const CreateProject = () => {
     <InnerContainer>
       <CreateProjectContainer>
         <CreateProjectTextContainer>
-          <CreateProjectText>Créer un nouveau projet</CreateProjectText>
-          <CreateProjectSubText>Ici, Vous pouvez créer votre nouveau projet</CreateProjectSubText>
+          {props.type === 'task' ? (
+            <CreateProjectText>Créer une nouvelle tâche</CreateProjectText>
+          ) : (
+            <CreateProjectText>Créer un nouveau projet</CreateProjectText>
+          )}
+          {props.type === 'task' ? (
+            <CreateProjectSubText>Créer une nouvelle tâche pour ce projet</CreateProjectSubText>
+          ) : (
+            <CreateProjectSubText>Ici, Vous pouvez créer votre nouveau projet</CreateProjectSubText>
+          )}
         </CreateProjectTextContainer>
         <CreateProjectButton onPress={handlePress}>
           <Octicons name="plus" size={24} color="black" />
         </CreateProjectButton>
       </CreateProjectContainer>
-      {isModalVisible && <CreateProjectModal view={isModalVisible} setView={setIsModalVisible} />}
+      {isModalVisible && props.type === 'task' ? (
+        <CreateTaskModal view={isModalVisible} setView={setIsModalVisible} id={props.id} />
+      ) : (
+        <CreateProjectModal view={isModalVisible} setView={setIsModalVisible} />
+      )}
     </InnerContainer>
   );
 };

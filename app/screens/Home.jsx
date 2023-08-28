@@ -47,6 +47,7 @@ const Home = ({ navigation }) => {
               nbUsers={project.usersId.length}
               navigation={navigation}
               id={project._id}
+              nbTasks={project.tasks.length}
             />
           ))}
       </InnerContainer>
