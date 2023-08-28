@@ -103,12 +103,42 @@ module.exports.addComment = asyncHandler(async (req, res) => {
       { $push: { comments: comment } },
       { new: true }
     );
+    if (!task) {
+      throw new Error("Task not found");
+    }
     return res.status(200).json({
       status: "true",
       message: "Comment added successfully",
     });
   } catch (error) {
     return res.status(400).json({
+      status: "false",
+      message: error.message,
+    });
+  }
+});
+
+/*
+ * @desc    get task info
+ * @route   GET /api/task/:taskId
+ * @access  Private
+ * */
+module.exports.getTaskInfo = asyncHandler(async (req, res) => {
+  const { taskId } = req.params;
+  try {
+    const task = await Task.findById(taskId);
+    if (task) {
+      return res.status(200).json({
+        status: "true",
+        message: "Task found",
+        task: task,
+      });
+    } else {
+      throw new Error("Task not found"); // Use "throw" to create an error object
+    }
+  } catch (error) {
+    return res.status(404).json({
+      // Use 404 status code for "Not Found"
       status: "false",
       message: error.message,
     });

@@ -341,3 +341,90 @@ export const TaskCardButton = styled.TouchableOpacity`
   margin: 10px;
   color: ${tertiary};
 `;
+
+export const TaskInfoContainer = styled.View`
+  flex: 1;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+  background-color: ${primary};
+  border-radius: 10px;
+  border: ${brand};
+  margin: 10px;
+  padding: 20px;
+  elevation: 3;
+`;
+
+export const TaskInfoText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  color: ${tertiary};
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 20px;
+`;
+
+export const TaskSliderCOntainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const TaskSliderLabel = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  color: ${tertiary};
+  font-weight: bold;
+  text-align: left;
+`;
+
+export const CommentContainer = styled.View`
+  flex-direction: column;
+  width: 90%;
+  align-items: flex-end; /* Align content to the right for SMS-like appearance */
+  background-color: ${brand}; /* Set the background color to green */
+  border-radius: 10px;
+  margin: 5px;
+  padding: 8px;
+  elevation: 3;
+  shadow-color: #000;
+  shadow-opacity: 0.2;
+  shadow-radius: 2px;
+`;
+
+export const CommentText = styled.Text`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  color: ${primary};
+  font-weight: bold;
+  text-align: left;
+`;
+
+export const ButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 20px;
+  background-color: ${primary};
+  margin: 10px;
+`;
+
+export const StyledTextInputAreaTask = styled.TextInput`
+  background-color: ${secondary};
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 16px;
+  height: 60px;
+  margin-vertical: 3px;
+  margin-bottom: 10px;
+  color: ${tertiary};
+`;
