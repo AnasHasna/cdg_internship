@@ -44,6 +44,7 @@ const TaskHome = ({ route, navigation }) => {
           nomProjet={projectData.name}
           description={projectData.description}
           tempsCreation={timeDiffInHours}
+          cle={projectData.key}
           utilisateurs={projectData.usersId}
         />
       )}

@@ -65,7 +65,7 @@ const Register = ({ navigation }) => {
     onSuccess: (data) => {
       console.log(data.data);
       dispatch(setUserInfo({ ...data.data }));
-      navigation.navigate('Welcome');
+      navigation.navigate('Home');
     },
     onError: (error) => {
       console.log(error.message);

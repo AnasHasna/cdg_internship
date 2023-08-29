@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const ProjectInfo = ({ nomProjet, description, tempsCreation, utilisateurs }) => {
+const ProjectInfo = ({ nomProjet, description, tempsCreation, utilisateurs, cle }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.nomProjet}>{nomProjet}</Text>
       <Text style={styles.description}>Description: {description}</Text>
+      <Text style={styles.description}>Clé: {cle}</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.infoLabel}>Créé il y a</Text>
         <Text style={styles.infoValue}>{tempsCreation} heures</Text>

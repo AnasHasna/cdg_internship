@@ -19,7 +19,7 @@ import {
 } from '../components/styles';
 import Slider from '@react-native-community/slider';
 import { useSelector } from 'react-redux';
-import { deleteTask, getTaskInfo, updateTaskInfo } from '../api/taskApi';
+import { addComment, deleteTask, getTaskInfo, updateTaskInfo } from '../api/taskApi';
 import { useMutation, useQuery } from 'react-query';
 import { Formik } from 'formik';
 import { RadioButton, useTheme } from 'react-native-paper';
@@ -32,7 +32,7 @@ const TaskDetail = ({ route, navigation }) => {
   const [taskData, setTaskData] = useState({});
   const [updateTask, setUpdateTask] = useState(false);
   const [progressValue, setProgressValue] = useState(taskData.progress);
-
+  const [comment, setComment] = useState('');
   //logic
   const { isLoading, data, refetch } = useQuery({
     queryKey: 'getTaskInfo',
@@ -89,6 +89,24 @@ const TaskDetail = ({ route, navigation }) => {
     let data2 = values;
     console.log(data2);
     mutate2({ taskId: taskId, data2, token });
+  };
+
+  const { mutate: mutate3 } = useMutation(addComment, {
+    mutationKey: 'addComment',
+    onSuccess: () => {
+      console.log('Comment added successfuly');
+      setComment('');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleComment = () => {
+    const data3 = {
+      comment: comment,
+    };
+    mutate3({ taskId: taskId, data3, token });
   };
 
   return (
@@ -248,6 +266,7 @@ const TaskDetail = ({ route, navigation }) => {
                     minimumValue={0}
                     maximumValue={100}
                     value={values.progress}
+                    minimumTrackTintColor={brand}
                     maximumTrackTintColor={brand}
                     onValueChange={(value) => setProgressValue(value)}
                   />
@@ -266,6 +285,37 @@ const TaskDetail = ({ route, navigation }) => {
           </Formik>
         </View>
       )}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          width: '90%',
+          alignItems: 'left',
+          marginLeft: 15,
+        }}
+      >
+        <View
+          style={{
+            marginBottom: 60,
+          }}
+        >
+          <StyledInputLabel>Ajouter un commentaire</StyledInputLabel>
+          <StyledTextInputAreaTask
+            label="Commentaire"
+            name="comment"
+            placeholder="Commentaire"
+            onChangeText={(e) => {
+              setComment(e);
+            }}
+            value={comment}
+          />
+          <View>
+            <StyledButton onPress={handleComment}>
+              <ButtonText>Ajouter</ButtonText>
+            </StyledButton>
+          </View>
+        </View>
+      </View>
     </StyledContainer>
   );
 };
